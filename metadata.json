@@ -1,0 +1,6 @@
+{
+  "name": "Pure Herbal Goodness India",
+  "description": "Premium wholesale exporter of 13 certified organic herbal powders from India. Features an interactive product catalog, export ratio insights, customizable quote requests, and an AI-powered export advisor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
