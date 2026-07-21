@@ -775,7 +775,6 @@ export default function App() {
                                   </div>
                                   <div className="text-right">
                                     <p className="text-[#1A3A34] font-serif italic text-sm leading-none">Chaitanya Patel</p>
-                                    <p className="text-[9px] uppercase tracking-wider font-bold text-stone-400 mt-1">QC Director, Lead Officer</p>
                                   </div>
                                 </div>
                               </div>
