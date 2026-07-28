@@ -19,7 +19,7 @@ export const EXPORTER_CONTACT = {
   whatsapp: "+17806990108",
   email: "chaitanyapatel4@gmail.com",
   location: "Gujarat, India",
-  website: "www.pureherbalindia.com"
+  website: "www.pranshexport.com"
 };
 
 export const QUALITY_STANDARDS = [

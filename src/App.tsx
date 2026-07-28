@@ -325,7 +325,7 @@ export default function App() {
           </div>
 
           <h1 className="font-serif text-5xl md:text-7xl font-light tracking-tight text-white max-w-4xl mx-auto leading-[1.1] mb-3">
-            Pure <span className="italic font-normal text-[#E8EDEA]">Herbal Goodness</span> from India
+            Pransh <span className="italic font-normal text-[#E8EDEA]">Export</span>
           </h1>
           <p className="font-serif italic text-white/80 text-lg md:text-2xl mb-8 tracking-wide">
             "Sourcing rare botanical species from certified organic plantations"
@@ -674,7 +674,7 @@ export default function App() {
                                   {COA_RECORDS[selectedProduct.id].title}
                                 </h4>
                                 <p className="text-[9px] text-[#1A3A34]/60 tracking-wider uppercase font-bold mt-0.5">
-                                  Pure Herbal Goodness India • Quality Control Laboratory
+                                  Pransh Export • Quality Control Laboratory
                                 </p>
                               </div>
 
@@ -794,7 +794,7 @@ export default function App() {
 
                               <div className="flex flex-col sm:flex-row gap-2.5 justify-center pt-2">
                                 <a
-                                  href={`https://wa.me/17806990108?text=Hello%20Pure%20Herbal%20Goodness%20India%2C%20I%20would%20like%20to%20request%20the%20latest%20lab%20Certificate%20of%20Analysis%20(CoA)%20for%20${encodeURIComponent(selectedProduct.name)}%20(${encodeURIComponent(selectedProduct.scientificName)})`}
+                                  href={`https://wa.me/17806990108?text=Hello%20Pransh%20Export%2C%20I%20would%20like%20to%20request%20the%20latest%20lab%20Certificate%20of%20Analysis%20(CoA)%20for%20${encodeURIComponent(selectedProduct.name)}%20(${encodeURIComponent(selectedProduct.scientificName)})`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="px-5 py-2.5 bg-emerald-600 text-white hover:bg-emerald-700 text-xs font-bold rounded-full flex items-center justify-center gap-1.5 transition shadow-xs"
@@ -1590,7 +1590,7 @@ export default function App() {
                 <div className="space-y-3 font-mono text-[10px] text-stone-600">
                   <div className="flex justify-between border-b border-stone-150 pb-1">
                     <span>Exporter:</span>
-                    <span className="font-bold text-[#1C3F24]">Pure Herbal Goodness India</span>
+                    <span className="font-bold text-[#1C3F24]">Pransh Export</span>
                   </div>
                   <div className="flex justify-between border-b border-stone-150 pb-1">
                     <span>Batch Code:</span>
@@ -1774,13 +1774,13 @@ export default function App() {
                           {/* Action controls */}
                           <div className="pt-2 flex gap-2 border-t border-stone-100">
                             <a
-                              href={`mailto:${selectedAdminInquiry.email}?subject=Export Quote Ticket ${selectedAdminInquiry.id} - Pure Herbal Goodness India&body=Dear ${selectedAdminInquiry.buyerName}, Thank you for your inquiry on our website. Sourcing ${selectedAdminInquiry.totalWeight} kg. Sincere regards, Chaitanya Patel`}
+                              href={`mailto:${selectedAdminInquiry.email}?subject=Export Quote Ticket ${selectedAdminInquiry.id} - Pransh Export&body=Dear ${selectedAdminInquiry.buyerName}, Thank you for your inquiry on our website. Sourcing ${selectedAdminInquiry.totalWeight} kg. Sincere regards, Chaitanya Patel`}
                               className="px-4 py-2 bg-[#1C3F24] hover:bg-[#122b18] text-white text-xs font-bold rounded-xl transition flex items-center gap-1"
                             >
                               <Mail className="w-4 h-4 text-[#C19A5B]" /> Send Email Quote Quote
                             </a>
                             <a
-                              href={`https://wa.me/${selectedAdminInquiry.whatsapp || selectedAdminInquiry.phone}?text=Hi ${selectedAdminInquiry.buyerName}, This is Chaitanya Patel from Pure Herbal Goodness India. Sourcing ticket ${selectedAdminInquiry.id}. Let us coordinate.`}
+                              href={`https://wa.me/${selectedAdminInquiry.whatsapp || selectedAdminInquiry.phone}?text=Hi ${selectedAdminInquiry.buyerName}, This is Chaitanya Patel from Pransh Export. Sourcing ticket ${selectedAdminInquiry.id}. Let us coordinate.`}
                               target="_blank"
                               rel="noreferrer"
                               className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition flex items-center gap-1"
@@ -1870,7 +1870,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
           <div className="space-y-3">
             <h3 className="font-serif text-2xl font-light text-white flex items-center justify-center md:justify-start gap-1.5">
-              <Sprout className="w-5 h-5 text-[#E8EDEA]" /> Pure <span className="italic font-normal text-white/90">Herbal Goodness</span> India
+              <Sprout className="w-5 h-5 text-[#E8EDEA]" /> Pransh <span className="italic font-normal text-white/90">Export</span>
             </h3>
             <p className="text-xs text-white/70 max-w-sm leading-relaxed font-light">
               Trusted global exporter of premium Ayurvedic herbal powders from Gujarat, India.
@@ -1889,7 +1889,7 @@ export default function App() {
               <button onClick={() => { setActiveTab("rfq"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="hover:text-white transition">Quote Calculator</button>
             </div>
             <div className="text-[10px] text-white/40 font-mono">
-              © {new Date().getFullYear()} Pure Herbal Goodness. All rights reserved. Sourced with Care. Delivered with Trust.
+              © {new Date().getFullYear()} Pransh Export. All rights reserved. Sourced with Care. Delivered with Trust.
             </div>
           </div>
         </div>

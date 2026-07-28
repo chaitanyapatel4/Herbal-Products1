@@ -127,7 +127,7 @@ app.post("/api/chat", async (req, res) => {
     const ai = getGeminiClient();
 
     // Sourced compact product data to keep prompt size optimized
-    const systemInstruction = `You are the Expert AI Export Advisor for 'Pure Herbal Goodness India', representing Chaitanya Patel (Export Lead, WhatsApp/Phone: +1 780-699-0108, Email: chaitanyapatel4@gmail.com).
+    const systemInstruction = `You are the Expert AI Export Advisor for 'Pransh Export', representing Chaitanya Patel (Export Lead, WhatsApp/Phone: +1 780-699-0108, Email: chaitanyapatel4@gmail.com).
 Your job is to assist international buyers (importers, brands, wholesalers, and cosmetic/supplement manufacturers) looking to import premium herbal powders from India.
 
 We export 13 core powders:
@@ -199,7 +199,7 @@ async function start() {
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`[Pure Herbal Goodness] Full-stack server running on http://localhost:${PORT}`);
+    console.log(`[Pransh Export] Full-stack server running on http://localhost:${PORT}`);
   });
 }
 
