@@ -58,7 +58,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // API: Submit export inquiry / quote request
-app.post("/api/inquiry", async (req, res) => {
+const handleInquirySubmit = async (req: express.Request, res: express.Response) => {
   try {
     const { buyerName, companyName, country, email, phone, whatsapp, products, notes, totalWeight } = req.body;
 
@@ -97,7 +97,10 @@ app.post("/api/inquiry", async (req, res) => {
     console.error("Error submitting inquiry:", error);
     res.status(500).json({ error: error.message || "Failed to submit inquiry" });
   }
-});
+};
+
+app.post("/api/inquiry", handleInquirySubmit);
+app.post("/api/inquire", handleInquirySubmit);
 
 // API: Get all inquiries (for exporter admin dashboard)
 app.get("/api/inquiries", async (req, res) => {
@@ -118,10 +121,17 @@ app.get("/api/inquiries", async (req, res) => {
 // API: AI Product and Export Advisor Chatbot
 app.post("/api/chat", async (req, res) => {
   try {
-    const { history } = req.body;
+    const { history, message } = req.body;
 
-    if (!history || !Array.isArray(history)) {
-      return res.status(400).json({ error: "Chat history must be provided as an array." });
+    let chatList = Array.isArray(history) ? [...history] : [];
+    if (chatList.length === 0 && message) {
+      chatList = [{ role: "user", content: message }];
+    } else if (message && chatList[chatList.length - 1]?.content !== message) {
+      chatList.push({ role: "user", content: message });
+    }
+
+    if (chatList.length === 0) {
+      return res.status(400).json({ error: "Chat message or history must be provided." });
     }
 
     const ai = getGeminiClient();
@@ -160,14 +170,13 @@ Conversation Guidelines:
 - Format text with clean bold headings and scannable bullet points.`;
 
     // Map history to the format expected by the GoogleGenAI SDK
-    // The SDK expects contents in the form of { role: 'user'|'model', parts: [{ text: '...' }] }
-    const formattedContents = history.map((msg: any) => ({
+    const formattedContents = chatList.map((msg: any) => ({
       role: msg.role === "user" ? "user" : "model",
       parts: [{ text: msg.content || msg.text || "" }]
     }));
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-3.6-flash",
       contents: formattedContents,
       config: {
         systemInstruction,

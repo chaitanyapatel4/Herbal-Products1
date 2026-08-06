@@ -242,10 +242,10 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
   };
 
   // Handle Chat Message Send
-  const handleSendChatMessage = async () => {
-    if (!chatInput.trim() || isChatLoading) return;
+  const handleSendChatMessage = async (overrideMessage?: string) => {
+    const userMessage = (overrideMessage || chatInput).trim();
+    if (!userMessage || isChatLoading) return;
 
-    const userMessage = chatInput.trim();
     setChatInput("");
     const newMessages = [...chatMessages, { role: "user" as const, content: userMessage }];
     setChatMessages(newMessages);
@@ -257,23 +257,28 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: userMessage,
-          history: newMessages.slice(0, -1)
+          history: newMessages
         })
       });
 
-      if (!res.ok) throw new Error("Server error");
       const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Server error");
+      }
 
       setChatMessages((prev) => [
         ...prev,
         { role: "model", content: data.text || "I apologize, I am temporarily unable to fetch specifications." }
       ]);
-    } catch (err) {
+    } catch (err: any) {
+      console.error("Chatbot error:", err);
       setChatMessages((prev) => [
         ...prev,
         {
           role: "model",
-          content: "Connection temporary error. Please contact **Chaitanya Patel** directly on WhatsApp at **+1 780-699-0108** or email **info@pranshexport.com**."
+          content: err.message
+            ? `Advisor Notice: ${err.message}`
+            : "Connection temporary error. Please contact **Chaitanya Patel** directly on WhatsApp at **+1 780-699-0108** or email **info@pranshexport.com**."
         }
       ]);
     } finally {
@@ -283,10 +288,7 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
 
   // Pre-defined question trigger
   const askPredefinedQuestion = (qText: string) => {
-    setChatInput(qText);
-    setTimeout(() => {
-      handleSendChatMessage();
-    }, 100);
+    handleSendChatMessage(qText);
   };
 
   // Handle RFQ Form Submission
