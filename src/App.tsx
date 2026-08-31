@@ -407,7 +407,7 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
                       className="absolute right-0 mt-1 w-44 bg-white border border-slate-200 rounded-lg shadow-xl z-50 py-1 text-slate-800"
                     >
                       <div className="px-3 py-1 text-[10px] uppercase font-bold text-slate-400 border-b border-slate-100">
-                        Select Pricing Currency
+                        Select Quote Currency
                       </div>
                       {CURRENCIES.map((curr) => (
                         <button
@@ -635,8 +635,7 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
                   </span>
                 </div>
                 <p className="text-slate-600 text-sm">
-                  Displaying unit FOB price estimates in <strong className="text-amber-600 font-mono">{selectedCurrency.code} ({selectedCurrency.symbol})</strong>.
-                  All items are available in 25kg fiber drums up to multi-ton FCL shipments.
+                  Certified botanical powders available in 25kg fiber drums up to multi-ton FCL shipments. Sourced directly from Gujarat, India.
                 </p>
               </div>
 
@@ -736,12 +735,12 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
                         </p>
                       </div>
 
-                      {/* FOB Price Badge */}
-                      <div className="text-right bg-slate-50 border border-slate-200 p-2 rounded-xl">
-                        <div className="text-xs font-mono font-extrabold text-slate-900">
-                          {formatPrice(product.fobPriceUsdPerKg)}
+                      {/* Wholesale MOQ / Export Badge */}
+                      <div className="text-right bg-slate-50 border border-slate-200 p-2 px-2.5 rounded-xl shrink-0">
+                        <div className="text-[11px] font-mono font-bold text-slate-800">
+                          MOQ 25 kg
                         </div>
-                        <div className="text-[8px] uppercase font-bold text-slate-400 tracking-wider">Est. FOB / kg</div>
+                        <div className="text-[8px] uppercase font-bold text-amber-700 tracking-wider">Bulk Export</div>
                       </div>
                     </div>
 
@@ -1178,15 +1177,15 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
                 <h2 className="font-serif text-2xl md:text-3xl font-bold text-slate-900 flex items-center gap-2">
-                  <Calculator className="w-7 h-7 text-amber-500" /> Export Quote & Freight Calculator
+                  <Calculator className="w-7 h-7 text-amber-500" /> Export Cargo & Quote Builder
                 </h2>
                 <p className="text-slate-600 text-sm mt-1 max-w-3xl">
-                  Adjust requested quantities per product (MOQ 100 kg). Prices dynamically calculate FOB or CIF costs in <strong className="text-amber-600 font-mono">{selectedCurrency.code} ({selectedCurrency.symbol})</strong> with live freight estimations to your destination port.
+                  Adjust requested quantities per product to configure your shipment. Submit your cargo specifications to receive an official proforma invoice with custom volume rates and real-time shipping schedules.
                 </p>
               </div>
 
               <div className="flex items-center gap-2 bg-slate-100 p-2 rounded-xl border border-slate-200">
-                <span className="text-xs text-slate-500 font-bold">Currency:</span>
+                <span className="text-xs text-slate-500 font-bold">Quote Currency:</span>
                 <span className="font-mono text-xs font-extrabold text-slate-900">{selectedCurrency.flag} {selectedCurrency.code}</span>
               </div>
             </div>
@@ -1197,14 +1196,13 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
               <div className="lg:col-span-2 space-y-4">
                 <div className="bg-white rounded-2xl border border-slate-200 p-5 space-y-4 shadow-xs">
                   <h3 className="font-serif text-lg font-bold text-slate-900 border-b border-slate-100 pb-2">
-                    Select Herbal Quantities (Kilograms)
+                    Select Botanical Quantities (Kilograms)
                   </h3>
 
                   {/* List of 13 Products */}
                   <div className="divide-y divide-slate-100 max-h-[520px] overflow-y-auto pr-2 space-y-3">
                     {HERBAL_PRODUCTS.map((product) => {
                       const qty = rfqQuantities[product.id] || 0;
-                      const lineFobUsd = product.fobPriceUsdPerKg * qty;
 
                       return (
                         <div key={product.id} className="py-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
@@ -1214,8 +1212,8 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
                             </span>
                             <div>
                               <h4 className="font-bold text-sm text-slate-900">{product.name}</h4>
-                              <p className="text-[11px] italic text-slate-400 font-serif">
-                                HS {product.hsCode} • {formatPrice(product.fobPriceUsdPerKg)}/kg FOB
+                              <p className="text-[11px] text-slate-500 font-medium">
+                                HS {product.hsCode} • {product.packaging} • {product.grade}
                               </p>
                             </div>
                           </div>
@@ -1277,38 +1275,36 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
                 </div>
               </div>
 
-              {/* Right Panel: Invoice Summary & RFQ Submission */}
+              {/* Right Panel: Cargo Summary & RFQ Submission */}
               <div className="space-y-6">
                 {/* Dynamic Summary Card */}
                 <div className="bg-white text-slate-900 p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
                   <h3 className="font-serif text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 flex justify-between items-center">
-                    <span>Export Cargo Valuation</span>
+                    <span>Export Cargo Summary</span>
                     <span className="text-xs font-mono text-slate-500 font-bold bg-slate-100 px-2 py-0.5 rounded">{selectedCurrency.code}</span>
                   </h3>
 
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Combined Net Weight</span>
+                      <span className="text-slate-600">Total Net Weight</span>
                       <span className="font-mono text-base font-extrabold text-slate-900">
                         {calculateTotalRfqWeight().toLocaleString()} kg ({ (calculateTotalRfqWeight() / 1000).toFixed(2) } MT)
                       </span>
                     </div>
 
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Total FOB India Cost</span>
-                      <span className="font-mono text-base font-extrabold text-amber-800">
-                        {formatPrice(calculateTotalFobUsd())}
+                      <span className="text-slate-600">Selected Products</span>
+                      <span className="font-mono text-sm font-bold text-slate-800">
+                        {Object.values(rfqQuantities).filter((q) => Number(q) > 0).length} Varieties
                       </span>
                     </div>
 
-                    {buyerForm.shippingTerms === "CIF" && (
-                      <div className="flex justify-between items-center text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <span>Ocean Freight & Marine Insurance ({selectedPort.code})</span>
-                        <span className="font-mono font-bold text-slate-800">
-                          +{formatPrice(calculateTotalRfqWeight() * selectedPort.cifEstPerKgUsd)}
-                        </span>
-                      </div>
-                    )}
+                    <div className="flex justify-between items-center text-xs text-slate-600 border-t border-slate-100 pt-2">
+                      <span>Trade Terms</span>
+                      <span className="font-bold text-slate-800">
+                        {buyerForm.shippingTerms === "FOB" ? "FOB (Mundra / JNPT India)" : `CIF (${selectedPort.code} - ${selectedPort.portName})`}
+                      </span>
+                    </div>
 
                     <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-1 text-xs">
                       <div className="text-amber-800 font-bold uppercase tracking-wider flex items-center gap-1">
@@ -1317,11 +1313,11 @@ We export 13 premium botanical powders directly from Gujarat, India to importers
                       <p className="text-slate-600">{getRecommendedShippingMode(calculateTotalRfqWeight()).desc}</p>
                     </div>
 
-                    <div className="pt-2 border-t border-slate-200 flex justify-between items-center text-base font-bold">
-                      <span className="text-slate-800 uppercase tracking-wider text-xs">Est. Total ({buyerForm.shippingTerms})</span>
-                      <span className="font-mono text-2xl font-black text-emerald-700">
-                        {formatPrice(buyerForm.shippingTerms === "FOB" ? calculateTotalFobUsd() : calculateTotalCifUsd())}
-                      </span>
+                    <div className="pt-3 border-t border-slate-200 bg-amber-50/60 p-3 rounded-xl border border-amber-200/80 text-xs text-amber-900 flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="font-bold">Official Proforma Quote:</strong> Tailored volume rates, batch availability, and ocean freight breakdown sent upon submission.
+                      </div>
                     </div>
                   </div>
                 </div>
